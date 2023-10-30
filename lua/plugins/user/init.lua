@@ -5,6 +5,7 @@ return {
   {
     "scalameta/nvim-metals",
     dependencies = {
+      "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
       "hrsh7th/vim-vsnip",
       "hrsh7th/cmp-vsnip",
@@ -21,6 +22,10 @@ return {
       local map = vim.keymap.set
 
       vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
+
+      -- Metals のコマンド画面を表示
+      local telescope = require "telescope"
+      map("n", "<leader>mc", telescope.extensions.metals.commands)
 
       -- LSP mappings
       map("n", "gD",  vim.lsp.buf.definition)
@@ -54,6 +59,10 @@ return {
 
       -- buffer diagnostics only
       map("n", "<leader>d", vim.diagnostic.setloclist)
+
+      -- astronvim/utils/lsp.lua と重複した設定
+      -- null-lsのon_attachがうまく動いていないっぽい。よくわからん
+      map("n", "gl", vim.diagnostic.open_float)
 
       map("n", "[c", function()
         vim.diagnostic.goto_prev({ wrap = false })
