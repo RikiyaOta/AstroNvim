@@ -1,9 +1,14 @@
 return {
   { "nvim-lua/plenary.nvim" },
+  { "hrsh7th/vim-vsnip" },
+  { "hrsh7th/cmp-vsnip" },
   {
     "scalameta/nvim-metals",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "hrsh7th/vim-vsnip",
+      "hrsh7th/cmp-vsnip",
+      "hrsh7th/nvim-cmp",
       "mfussenegger/nvim-dap",
     },
     ft = {
